@@ -1,0 +1,107 @@
+{
+	"name": "bebar-vscode",
+	"displayName": "bebar",
+	"publisher": "oYo-fr",
+	"description": "",
+	"version": "0.0.13",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/oYo-fr/bebar-vscode"
+	},
+	"engines": {
+		"vscode": "^1.65.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onStartupFinished",
+		"onView:bebarExplorer"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "bebar.open",
+				"title": "Open",
+				"icon": {
+					"light": "resources/light/folder.svg",
+					"dark": "resources/dark/folder.svg"
+				}
+			},
+			{
+				"command": "bebar.run",
+				"title": "Run!",
+				"icon": {
+					"light": "resources/light/run.svg",
+					"dark": "resources/dark/run.svg"
+				}
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "bebar-explorer",
+					"title": "Bebar Explorer",
+					"icon": "resources/bebar.svg"
+				}
+			]
+		},
+		"views": {
+			"bebar-explorer": [
+				{
+					"id": "bebarExplorer",
+					"name": "Bebar Explorer",
+					"contextualTitle": "Bebar Explorer",
+					"visibility": "visible"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "bebar.open",
+					"when": "view == bebarExplorer",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"test-compile": "tsc -p ./",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./dist/test/runTest.js",
+		"format": "prettier --write ./src/**/*.ts",
+		"upgrade": "npx yarn-upgrade-all",
+		"upgrade Bebar": "yarn upgrade bebar",
+		"deploy": "vsce publish --yarn"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.0",
+		"@types/node": "^17.0.21",
+		"@types/vscode": "^1.65.0",
+		"@typescript-eslint/eslint-plugin": "^5.13.0",
+		"@typescript-eslint/parser": "^5.13.0",
+		"eslint": "^8.10.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"glob": "^7.2.0",
+		"mocha": "^9.2.1",
+		"ts-loader": "^9.2.7",
+		"typescript": "^4.6.2",
+		"vsce": "^2.6.7",
+		"vscode-test": "^1.6.1",
+		"webpack": "^5.70.0",
+		"webpack-cli": "^4.9.2",
+		"yarn-upgrade-all": "^0.6.1"
+	},
+	"dependencies": {
+		"bebar": "*"
+	}
+}

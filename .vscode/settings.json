@@ -1,0 +1,24 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "eslint.validate": ["javascript"],
+    "files.exclude": {
+        ".devcontainer/": true,
+        ".vscode/": true,
+        "node_modules/": true,
+        "dist/": true
+    },
+    "coverage-gutters.coverageFileNames": [
+      "coverage/lcov.info",
+      "coverage/clover.xml"
+    ],
+    "search.exclude": {
+        "out": true // set this to false to include "out" folder in search results
+    },
+    // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+    "typescript.tsc.autoDetect": "off",
+    "workbench.colorTheme": "Solarized Dark",
+    "jestTestExplorer.logpanel": true,
+    "jestTestExplorer.logfile": "test",
+    "jestTestExplorer.flattenExplorer": true,
+    "testExplorer.addToEditorContextMenu": true
+}

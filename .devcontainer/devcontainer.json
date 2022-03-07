@@ -1,0 +1,7 @@
+{
+	"name": "bebar",
+	"dockerComposeFile": ["docker-compose.yml"],
+	"service": "appservice",
+	"workspaceFolder": "/home",
+	"postAttachCommand": "yarn"
+}

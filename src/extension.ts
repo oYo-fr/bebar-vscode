@@ -5,6 +5,7 @@ var util = require("util");
 import {BebarController} from "bebar";
 import * as path from "path";
 import { loadavg } from "os";
+import { BebarEditor } from "./BebarEditor";
 
 export function activate(context: vscode.ExtensionContext) {
   const bebarController: BebarController = new BebarController();
@@ -20,6 +21,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeTextDocument(async (event) => {
     })
   );
+
+	context.subscriptions.push(BebarEditor.register(context));
 
   vscode.commands.registerCommand("bebar.open", async () => {
     try {

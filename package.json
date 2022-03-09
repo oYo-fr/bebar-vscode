@@ -16,7 +16,8 @@
 	],
 	"activationEvents": [
 		"onStartupFinished",
-		"onView:bebarExplorer"
+		"onView:bebarExplorer",
+		"onWebviewPanel:bebarEditor"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -27,7 +28,8 @@
 				"icon": {
 					"light": "resources/light/folder.svg",
 					"dark": "resources/dark/folder.svg"
-				}
+				},
+				"category": "Bebar"
 			},
 			{
 				"command": "bebar.run",
@@ -35,7 +37,8 @@
 				"icon": {
 					"light": "resources/light/run.svg",
 					"dark": "resources/dark/run.svg"
-				}
+				},
+				"category": "Bebar"
 			}
 		],
 		"viewsContainers": {
@@ -65,7 +68,19 @@
 					"group": "navigation"
 				}
 			]
-		}
+		},
+		"customEditors": [
+			{
+				"viewType": "bebar.editor",
+				"displayName": "Bebar editor",
+				"selector": [
+					{
+						"filenamePattern": "*.bebar"
+					}
+				],
+				"priority": "default"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "webpack --mode production",

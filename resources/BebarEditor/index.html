@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!--
+  Use a content security policy to only allow loading images from https or from our extension directory,
+  and only allow scripts that have a specific nonce.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{context.cspSource}}; style-src {{context.cspSource}}; script-src 'nonce-{{context.nonce}}';">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="${styleResetUri}" rel="stylesheet" />
+  <link href="${styleVSCodeUri}" rel="stylesheet" />
+  <link href="${styleMainUri}" rel="stylesheet" />
+
+  <title>Cat Scratch</title>
+</head>
+<body>
+  <div class="notes">
+    <div class="add-button">
+      <button>Scratch!</button>
+    </div>
+  </div>
+
+  <script nonce="{{context.nonce}}" src="${scriptUri}"></script>
+</body>
+</html>

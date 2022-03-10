@@ -88,13 +88,17 @@ export class BebarEditor implements vscode.CustomTextEditorProvider {
     }
     return vscode.Uri.file(context.asAbsolutePath(path.join('resources', file))).fsPath;
   }
+  public static getResourcesPathAsUri(file: string, context: vscode.ExtensionContext, asUri = false): vscode.Uri {
+    return vscode.Uri.file(context.asAbsolutePath(path.join('resources', file)));
+  }
 
 	private async _getHtmlForWebview(webview: vscode.Webview) {
     // Use a nonce to whitelist which scripts can be run
 		const nonce = getNonce();
     const htmlFilePath = BebarEditor.getResourcesPath("BebarEditor/index.html", this.context);
 
-    const htmlBebarHandler = new BebarHandler(new Bebar({
+
+    /*const htmlBebarHandler = new BebarHandler(new Bebar({
       templates: [
         new Template({
           file: htmlFilePath
@@ -115,10 +119,24 @@ export class BebarEditor implements vscode.CustomTextEditorProvider {
       await htmlBebarHandler.load();
     }catch (e) {
       console.log(e);
-    }
+    }*/
 
-    return htmlBebarHandler.templateHandlers[0].outputs[0].content;
+    const html = await readFile(htmlFilePath, 'utf-8');
 
+		let result = replaceAll(html, '<script', `<script nonce="${nonce}"`)
+		.replace('</head>', `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${nonce}; style-src ${nonce}; script-src 'nonce-${nonce}';"></head>`);
+		result = replaceAll(html, '<link', `<link nonce="${nonce}"`);
+		const replaces = ["main.js", "polyfills.js", "runtime.js", "vendor.js", "styles.css"];
+
+		for(let i = 0; i < replaces.length; i++){
+			result = result.replace(replaces[i], webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri, 'resources', 'BebarEditor', replaces[i])).toString());
+		}
+		return result;
+
+
+		/*
+		main.js:894 Refused to load the script 'https://file+.vscode-resource.vscode-webview.net/c%3A/git/bebar/bebar-vscode/resources/BebarEditor/runtime.js' because it violates the following Content Security Policy directive: "script-src 'nonce-DmSn7AZrk3OZdMA3Rv9FJEHbx6ZFZNF7'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback
+		 */
     // const html = await readFile(path, "utf8");
 		// // Local path to script and css for the webview
 		// const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(
@@ -164,6 +182,14 @@ export class BebarEditor implements vscode.CustomTextEditorProvider {
 		// 	</body>
 		// 	</html>`;
 	}
+}
+
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+function replaceAll(str: string, find: string, replace: string) {
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
 
 function getNonce() {

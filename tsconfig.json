@@ -17,6 +17,7 @@
       "coverage",
       ".github",
       ".vscode",
-      ".devcontainer"
+      ".devcontainer",
+			"src-webview-BebarEditor"
   ],
 }

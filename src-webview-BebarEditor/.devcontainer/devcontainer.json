@@ -1,0 +1,6 @@
+{
+	"name": "bebar-editor",
+	"dockerComposeFile": ["docker-compose.yml"],
+	"service": "appservice",
+	"workspaceFolder": "/home"
+}

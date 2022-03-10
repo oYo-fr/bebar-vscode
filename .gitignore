@@ -2,3 +2,5 @@ node_modules
 .vscode-test
 out
 dist
+src-webview-BebarEditor/node_modules
+resources/BebarEditor

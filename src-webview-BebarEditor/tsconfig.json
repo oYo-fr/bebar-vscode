@@ -1,6 +1,7 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
+  "include": ["src", "types"],
+  "compileOnSave": true,
   "compilerOptions": {
     "types": ["node"],
     "baseUrl": "./",
@@ -25,6 +26,7 @@
     ]
   },
   "angularCompilerOptions": {
+    "types" : ["node"],
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

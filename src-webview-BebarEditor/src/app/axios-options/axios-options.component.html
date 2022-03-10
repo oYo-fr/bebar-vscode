@@ -1,0 +1,27 @@
+<p>axios-options works!</p>
+
+<mat-form-field appearance="fill">
+  <mat-label>Method</mat-label>
+  <select matNativeControl required>
+    <option value="Get">Get</option>
+    <option value="Post">Post</option>
+    <option value="Head">Head</option>
+    <option value="Put">Put</option>
+    <option value="Delete">Delete</option>
+    <option value="Connect">Connect</option>
+    <option value="Options">Options</option>
+    <option value="Trace">Trace</option>
+    <option value="Patch">Patch</option>
+  </select>
+</mat-form-field>
+<mat-form-field appearance="fill"><mat-label>Base url</mat-label><input matInput placeholder="http://" value=""></mat-form-field>
+<mat-form-field appearance="fill"><mat-label>Url</mat-label><input matInput placeholder="/Users" value=""></mat-form-field>
+<br />
+Headers
+<table mat-table class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>Header</th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+</table>

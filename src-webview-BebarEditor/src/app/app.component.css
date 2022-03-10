@@ -1,0 +1,51 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.accordion {
+  display: block;
+  border-color: var(--vscode-panel-border);
+  border-style: solid;
+  background: var(--vscode-editorGroup-border);
+  box-shadow: 1px 1px 1px black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.accordion-item {
+  display: block;
+  border: solid 1px --vscode-button-hoverBackground;
+}
+
+.accordion-item + .accordion-item {
+  border-top: none;
+}
+
+.accordion-item-header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.accordion-item-description {
+  font-size: 0.85em;
+  color: --vscode-button-hoverBackground;
+}
+
+.accordion-item-header,
+.accordion-item-body {
+  padding: 16px;
+}
+
+.accordion-item-header:hover {
+  cursor: pointer;
+  background-color: --vscode-button-hoverBackground;
+}
+
+.accordion-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.accordion-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}

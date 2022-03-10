@@ -1,5 +1,80 @@
 {{ title }} app is running!gg!
 <button mat-button>test</button>
-<ul>
-  <li *ngFor="let data of bebar.data">{{data.file}}</li>
-</ul>
+
+<app-axios-options></app-axios-options>
+
+<cdk-accordion class="accordion">
+  <cdk-accordion-item>
+    <div class="accordion-item-header" (click)="accordionItems.data.expanded = !accordionItems.data.expanded">
+      Data
+    </div>
+    <mat-list role="list" [style.display]="accordionItems.data.expanded ? '' : 'none'">
+      <mat-list-item role="listitem" *ngFor="let data of bebar.data | datasetArray">
+        <p mat-line> {{data.file}}</p>
+        <button mat-icon-button><mat-icon aria-label="Delete">delete</mat-icon></button>
+      </mat-list-item>
+    </mat-list>
+</cdk-accordion-item>
+<cdk-accordion-item>
+  <div class="accordion-item-header" (click)="accordionItems.templates.expanded = !accordionItems.templates.expanded">
+    Templates
+  </div>
+  <mat-list role="list" [style.display]="accordionItems.templates.expanded ? '' : 'none'">
+    <mat-list-item role="listitem" *ngFor="let template of bebar.templates | templateArray">
+      <p mat-line> {{template.file}}</p>
+      <button mat-icon-button><mat-icon aria-label="Delete">delete</mat-icon></button>
+    </mat-list-item>
+  </mat-list>
+</cdk-accordion-item>
+</cdk-accordion>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Templates</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let data of bebar.templates | templateArray">
+        <p mat-line> {{data.file}}</p>
+        <button mat-icon-button><mat-icon aria-label="Delete">delete</mat-icon></button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-stroked-button>Add</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Partials</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let data of bebar.partials | partialsetArray">
+        <p mat-line> {{data.file}}</p>
+        <button mat-icon-button><mat-icon aria-label="Delete">delete</mat-icon></button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-stroked-button>Add</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Helpers</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let data of bebar.helpers | helpersetArray">
+        <p mat-line> {{data.file}}</p>
+        <button mat-icon-button><mat-icon aria-label="Delete">delete</mat-icon></button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-stroked-button>Add</button>
+  </mat-card-actions>
+</mat-card>

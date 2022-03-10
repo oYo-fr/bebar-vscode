@@ -12,7 +12,7 @@
 			"args": [
 				"${workspaceFolder}/testworkspace",
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"do.bebar"
+				"${workspaceFolder}/testworkspace/do.bebar"
 			],
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"

@@ -20,12 +20,13 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
-    "bebar": "^0.20.0",
+    "bebar": "^0.31.0",
     "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
     "rxjs": "~7.5.0",
     "stream-browserify": "^3.0.0",
     "tslib": "^2.3.0",
+    "util": "^0.12.4",
+    "util.promisify": "^1.1.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -36,12 +37,14 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.20.47",
     "buffer": "^6.0.3",
+    "dotenv-webpack": "^7.1.0",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "process": "^0.11.10",
     "typescript": "~4.5.2"
   }
 }

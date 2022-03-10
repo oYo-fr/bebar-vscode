@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IBebar } from 'bebar';
+import { IBebar, IDataset, IHelperset, IPartialset } from 'bebar';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,31 @@ import { IBebar } from 'bebar';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  bebar = {
-    data: [
-      {file: "*"}
+  bebar: IBebar = {
+    data: "./data*.json",
+    helpers: [
+      {file: "./helpers/*.js"}
+    ],
+    partials: [
+      {file: "./partials/*.js"}
+    ],
+    templates: [
+
     ]
   };
   title = 'bebar-angular';
+  accordionItems = {
+    data: {
+      expanded: true
+    },
+    templates: {
+      expanded: true
+    },
+    partials: {
+      expanded: true
+    },
+    helpers: {
+      expanded: true
+    }
+  };
 }

@@ -19,6 +19,22 @@
 		"onView:bebarExplorer",
 		"onWebviewPanel:bebarEditor"
 	],
+	"scripts": {
+		"vscode:prepublish": "webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"build": "npm runbuild-editor-view && tsc -p ./",
+		"build-editor-view": "cd ./src-webview-BebarEditor && ng build --output-hashing none",
+		"watch": "tsc -watch -p ./",
+		"watch-editor-view": "cd src-webview-BebarEditor && ng build --watch --configuration development --output-hashing none",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./dist/test/runTest.js",
+		"format": "prettier --write ./src/**/*.ts",
+		"upgrade": "npx yarn-upgrade-all",
+		"upgrade Bebar": "yarn upgrade bebar",
+		"deploy": "vsce publish --yarn"
+	},
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
@@ -57,9 +73,33 @@
 					"name": "Bebar Explorer",
 					"contextualTitle": "Bebar Explorer",
 					"visibility": "visible"
+				},
+				{
+					"id": "bebarExplorer-partials",
+					"name": "Partials",
+					"contextualTitle": "Partials",
+					"when": "velcomeView:fileOpened"
+				},
+				{
+					"id": "bebarExplorer-helpers",
+					"name": "Helpers",
+					"contextualTitle": "Helpers",
+					"when": "velcomeView:fileOpened"
 				}
 			]
 		},
+		"viewsWelcome": [
+			{
+				"view": "bebarExplorer",
+				"contents": "[Open a Bebar file](command:bebar.open)\nWant to know the cool stuff you can do with Bebar? [Check-out the documentation 💡](https://www.npmjs.com/package/bebar/).",
+				"when": "!velcomeView:fileOpened"
+			},
+			{
+				"view": "bebarExplorer",
+				"contents": "[Run 💾](command:bebar.run)\nWant to know the cool stuff you can do with Bebar? [Check-out the documentation 💡](https://www.npmjs.com/package/bebar/).",
+				"when": "velcomeView:fileOpened"
+			}
+		],
 		"menus": {
 			"view/title": [
 				{
@@ -82,22 +122,6 @@
 			}
 		]
 	},
-	"scripts": {
-		"vscode:prepublish": "webpack --mode production",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch",
-		"build": "npm runbuild-editor-view && tsc -p ./",
-    "build-editor-view": "cd ./src-webview-BebarEditor && ng build --output-hashing none",
-		"watch": "tsc -watch -p ./",
-    "watch-editor-view": "cd src-webview-BebarEditor && ng build --watch --configuration development --output-hashing none",
-		"pretest": "yarn run compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./dist/test/runTest.js",
-		"format": "prettier --write ./src/**/*.ts",
-		"upgrade": "npx yarn-upgrade-all",
-		"upgrade Bebar": "yarn upgrade bebar",
-		"deploy": "vsce publish --yarn"
-	},
 	"devDependencies": {
 		"@types/glob": "^7.2.0",
 		"@types/mocha": "^9.1.0",
@@ -118,6 +142,6 @@
 		"yarn-upgrade-all": "^0.6.1"
 	},
 	"dependencies": {
-		"bebar": "*"
+		"bebar": "^0.35.0"
 	}
 }

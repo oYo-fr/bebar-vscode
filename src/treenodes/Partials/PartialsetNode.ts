@@ -1,0 +1,22 @@
+import { BebarHandler, PartialsetHandler } from "bebar";
+import * as vscode from "vscode";
+import { BaseNode } from "../BaseNode";
+import { PartialNode } from "./PartialNode";
+import * as path from "path";
+
+export class PartialsetNode extends BaseNode {
+  constructor(
+    public readonly bebarHandler: BebarHandler,
+    public readonly partialsetHandler: PartialsetHandler,
+    public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
+      .TreeItemCollapsibleState.Expanded
+  ) {
+    super(partialsetHandler.partialset.file ?? partialsetHandler.partialset.url!, collapsibleState);
+  }
+
+  getChildren(): PartialNode[] {
+    let result: PartialNode[] = this.partialsetHandler.partials.map(p => new PartialNode(this.bebarHandler, p));
+    result = result.sort((a: PartialNode, b: PartialNode) => a.partial.name < b.partial.name ? -1 : (a.partial.name > b.partial.name ? 1 : 0));
+    return result;
+  }
+}

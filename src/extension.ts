@@ -8,8 +8,9 @@ import { loadavg } from "os";
 import { BebarEditor } from "./BebarEditor";
 
 export function activate(context: vscode.ExtensionContext) {
-  const bebarController: BebarController = new BebarController();
-  const explorer = new BebarExplorer(bebarController);
+  const bebarController: BebarController = new BebarController(undefined);
+
+  const explorer = new BebarExplorer(context, bebarController);
 
   console.log = function (d) {
     Logger.log(util.format(d));
@@ -33,14 +34,21 @@ export function activate(context: vscode.ExtensionContext) {
       if (dialogResult) {
         const file = dialogResult[0];
         if(file){
-          await bebarController.load(path.dirname(file.fsPath), file.fsPath);
+          bebarController.handlers = [];
+          await bebarController.load(file.fsPath);
+          await explorer.refreshView();
+          vscode.commands.executeCommand(
+            "setContext",
+            "velcomeView:fileOpened",
+            true
+          );
           vscode.commands.executeCommand("vscode.open", file, {
             viewColumn: 1,
           });
         }
       }
     } catch (e) {
-      //vscode.window.showErrorMessage(e);
+      //vscode.window.showErrorMessage(e.toString());
     }
   });
 

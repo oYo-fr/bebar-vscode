@@ -1,11 +1,9 @@
 import * as vscode from "vscode";
-import { Bebar } from "bebar";
 
 export class BaseNode extends vscode.TreeItem {
   constructor(
+    public context: vscode.ExtensionContext,
     public readonly label: string,
-    public readonly context?: any,
-    public readonly bebar?: Bebar,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
       .TreeItemCollapsibleState.Collapsed,
     public readonly command?: vscode.Command

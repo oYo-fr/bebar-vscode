@@ -5,12 +5,13 @@ import { BaseNode } from "../BaseNode";
 
 export class PartialNode extends BaseNode {
   constructor(
+    public context: vscode.ExtensionContext,
     public readonly bebarHandler: BebarHandler,
     public readonly partial: Partial,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
       .TreeItemCollapsibleState.None
   ) {
-    super(partial.name, collapsibleState);
+    super(context, partial.name, collapsibleState);
 
     this.tooltip = partial.code;
     let origin =  partial.origin;

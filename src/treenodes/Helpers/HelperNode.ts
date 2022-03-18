@@ -5,12 +5,13 @@ import { BaseNode } from "../BaseNode";
 
 export class HelperNode extends BaseNode {
   constructor(
+    public context: vscode.ExtensionContext,
     public readonly bebarHandler: BebarHandler,
     public readonly helper: Helper,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
       .TreeItemCollapsibleState.None
   ) {
-    super(helper.name, collapsibleState);
+    super(context, helper.name, collapsibleState);
 
     this.tooltip = helper.func.toString();
     let origin =  helper.origin;

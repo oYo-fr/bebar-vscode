@@ -6,11 +6,13 @@ import {BebarController} from "bebar";
 import * as path from "path";
 import { loadavg } from "os";
 import { BebarEditor } from "./BebarEditor";
+import { OutputProvider } from "./OutputProvider";
 
 export function activate(context: vscode.ExtensionContext) {
   const bebarController: BebarController = new BebarController(undefined);
 
   const explorer = new BebarExplorer(context, bebarController);
+  const outputProvider = new OutputProvider(context, bebarController);
 
   console.log = function (d) {
     Logger.log(util.format(d));
@@ -24,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
 	context.subscriptions.push(BebarEditor.register(context));
+
 
   vscode.commands.registerCommand("bebar.open", async () => {
     try {

@@ -10,7 +10,7 @@ export class BaseNodeProvider implements vscode.TreeDataProvider<BaseNode> {
   BaseNode | undefined | void
   > = this._onDidChangeTreeData.event;
 
-  constructor(public bebarController: BebarController) {}
+  constructor(public context: vscode.ExtensionContext, public bebarController: BebarController) {}
 
   createDirectory(uri: vscode.Uri): void | Thenable<void> {
     return;

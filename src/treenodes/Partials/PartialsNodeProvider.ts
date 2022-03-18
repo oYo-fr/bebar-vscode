@@ -7,6 +7,6 @@ import { BaseNode } from "../BaseNode";
 export class PartialsNodeProvider extends BaseNodeProvider {
   public async getRoot(): Promise<PartialsetNode[]> {
     const handler = this.getHandler();
-    return handler ? handler.partialsetHandlers.map(p => new PartialsetNode(handler, p)) : [];
+    return handler ? handler.partialsetHandlers.map(p => new PartialsetNode(this.context, handler, p)) : [];
   }
 }

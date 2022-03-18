@@ -75,6 +75,12 @@
 					"visibility": "visible"
 				},
 				{
+					"id": "bebarExplorer-outputs",
+					"name": "Outputs",
+					"contextualTitle": "Outputs",
+					"when": "velcomeView:fileOpened"
+				},
+				{
 					"id": "bebarExplorer-partials",
 					"name": "Partials",
 					"contextualTitle": "Partials",

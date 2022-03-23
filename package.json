@@ -126,6 +126,16 @@
 				],
 				"priority": "default"
 			}
+		],
+		"snippets": [
+			{
+				"language": "yaml",
+				"path": "resources/snippets/yaml.json"
+			},
+			{
+				"language": "handlebars",
+				"path": "resources/snippets/mustache.json"
+			}
 		]
 	},
 	"devDependencies": {
@@ -148,6 +158,6 @@
 		"yarn-upgrade-all": "^0.6.1"
 	},
 	"dependencies": {
-		"bebar": "^0.35.0"
+		"bebar": "^0.36.0"
 	}
 }

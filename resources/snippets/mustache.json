@@ -1,0 +1,72 @@
+{
+	"Handlebar if helper":{
+		 "scope":"handlebars",
+		 "prefix":"hif",
+		 "body":[
+				"{{#if ${1:cond}}}",
+				"${0}",
+				"{{/if}}"
+		 ],
+		 "description":"If block helper"
+	},
+	"Handlebar if else helper":{
+		 "scope":"handlebars",
+		 "prefix":"hifelse",
+		 "body":[
+				"{{#if ${1:cond}}}",
+				"${0}",
+				"{{else}}",
+				"${0}",
+				"{{/if}}"
+		 ],
+		 "description":"if else block helper"
+	},
+	"Handlebar unless helper":{
+		 "scope":"handlebars",
+		 "prefix":"hunless",
+		 "body":[
+				"{{#unless ${1:cond}}}",
+				"${0}",
+				"{{/unless}}"
+		 ],
+		 "description":"unless block helper"
+	},
+	"Handlebar each helper":{
+		 "scope":"handlebars",
+		 "prefix":"heach",
+		 "body":[
+				"{{#each ${1:list}}}",
+				"${0}",
+				"{{/each}}"
+		 ],
+		 "description":"each block helper"
+	},
+	"Handlebar each as helper":{
+		 "scope":"handlebars",
+		 "prefix":"heachelse",
+		 "body":[
+				"{{#each ${1:list} as | ${2:name} |}}",
+				"${0}",
+				"{{else}}",
+				"$0",
+				"{{/each}}"
+		 ],
+		 "description":"each else block helper"
+	},
+	"Handlebar with helper":{
+		 "scope":"handlebars",
+		 "prefix":"hwith",
+		 "body":[
+				"{{#with ${property}}}",
+				"${0}",
+				"{{/with}}"
+		 ],
+		 "description":"each block helper"
+	},
+	"Handlebar partials ":{
+		 "scope":"handlebars",
+		 "prefix":"hpar",
+		 "body":"{{> partial_name}}}",
+		 "description":"partials in hbs"
+	}
+}

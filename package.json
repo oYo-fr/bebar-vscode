@@ -115,18 +115,6 @@
 				}
 			]
 		},
-		"customEditors": [
-			{
-				"viewType": "bebar.editor",
-				"displayName": "Bebar editor",
-				"selector": [
-					{
-						"filenamePattern": "*.bebar"
-					}
-				],
-				"priority": "default"
-			}
-		],
 		"snippets": [
 			{
 				"language": "yaml",
@@ -158,6 +146,6 @@
 		"yarn-upgrade-all": "^0.6.1"
 	},
 	"dependencies": {
-		"bebar": "^0.36.0"
+		"bebar": "^0.41.0"
 	}
 }

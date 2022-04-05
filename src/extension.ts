@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { Logger } from "./Logger";
 import { BebarExplorer } from "./BebarExplorer";
 var util = require("util");
-import {BebarController} from "bebar";
+import {BebarController, RefreshContext, RefreshType} from "bebar";
 import * as path from "path";
 import { loadavg } from "os";
 import { BebarEditor } from "./BebarEditor";
@@ -22,6 +22,17 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeTextDocument(async (event) => {
+      const refreshContext = new RefreshContext(
+        RefreshType.FileContentChanged,
+        bebarController.handlers[0].rootPath,
+        event.document.fileName,
+        event.document.fileName,
+        event.document.getText());
+      if (event.contentChanges.length > 0) {
+        if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
+          outputProvider.refresh(refreshContext);
+        }
+      }
     })
   );
 

@@ -78,18 +78,21 @@
 					"id": "bebarExplorer-outputs",
 					"name": "Outputs",
 					"contextualTitle": "Outputs",
+					"visibility": "visible",
 					"when": "velcomeView:fileOpened"
 				},
 				{
 					"id": "bebarExplorer-partials",
-					"name": "Partials",
-					"contextualTitle": "Partials",
+					"name": "Globally available partials",
+					"contextualTitle": "Globally available partials",
+					"visibility": "collapsed",
 					"when": "velcomeView:fileOpened"
 				},
 				{
 					"id": "bebarExplorer-helpers",
-					"name": "Helpers",
-					"contextualTitle": "Helpers",
+					"name": "Globally available helpers",
+					"contextualTitle": "Globally available helpers",
+					"visibility": "collapsed",
 					"when": "velcomeView:fileOpened"
 				}
 			]
@@ -146,6 +149,6 @@
 		"yarn-upgrade-all": "^0.6.1"
 	},
 	"dependencies": {
-		"bebar": "^0.42.0"
+		"bebar": "^0.44.0",
 	}
 }

@@ -30,14 +30,68 @@ export function activate(context: vscode.ExtensionContext) {
         event.document.getText());
       if (event.contentChanges.length > 0) {
         if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
-          outputProvider.refresh(refreshContext);
+          await outputProvider.refresh(refreshContext);
+          await explorer.refreshView();
+        }
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.workspace.onDidCreateFiles(async (event) => {
+      for(let i = 0; i < event.files.length; i++) {
+        const file = event.files[i];
+        const refreshContext = new RefreshContext(
+          RefreshType.FileCreated,
+          bebarController.handlers[0].rootPath,
+          undefined,
+          file.fsPath,
+          undefined);
+        if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
+          await outputProvider.refresh(refreshContext);
+          await explorer.refreshView();
+        }
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.workspace.onDidDeleteFiles(async (event) => {
+      for(let i = 0; i < event.files.length; i++) {
+        const file = event.files[i];
+        const refreshContext = new RefreshContext(
+          RefreshType.FileDeleted,
+          bebarController.handlers[0].rootPath,
+          file.fsPath,
+          undefined,
+          undefined);
+        if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
+          await outputProvider.refresh(refreshContext);
+          await explorer.refreshView();
+        }
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.workspace.onDidRenameFiles(async (event) => {
+      for(let i = 0; i < event.files.length; i++) {
+        const file = event.files[i];
+        const refreshContext = new RefreshContext(
+          RefreshType.FileMovedOrRenamed,
+          bebarController.handlers[0].rootPath,
+          file.oldUri.fsPath,
+          file.newUri.fsPath,
+          undefined);
+        if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
+          await outputProvider.refresh(refreshContext);
+          await explorer.refreshView();
         }
       }
     })
   );
 
 	context.subscriptions.push(BebarEditor.register(context));
-
 
   vscode.commands.registerCommand("bebar.open", async () => {
     try {

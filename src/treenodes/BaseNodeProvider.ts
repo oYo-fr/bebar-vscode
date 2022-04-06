@@ -53,7 +53,6 @@ export class BaseNodeProvider implements vscode.TreeDataProvider<BaseNode> {
 
   async refreshView(): Promise<void> {
     this._onDidChangeTreeData.fire();
-    this._onDidChangeTreeData.fire();
   }
 
   async getChildren(element?: BaseNode): Promise<BaseNode[]> {

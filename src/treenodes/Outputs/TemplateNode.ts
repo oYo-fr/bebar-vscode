@@ -12,7 +12,7 @@ export class TemplateNode extends BaseNode {
     public readonly bebarHandler: BebarHandler,
     public readonly templateHandler: TemplateHandler,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
-      .TreeItemCollapsibleState.Collapsed
+      .TreeItemCollapsibleState.Expanded
   ) {
     super(
       context,

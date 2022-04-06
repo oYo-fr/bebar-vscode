@@ -41,5 +41,6 @@ export class BebarExplorer {
   async refreshView() {
     await this.partialsNodeProvider.refreshView();
     await this.helpersNodeProvider.refreshView();
+    await this.outputsNodeProvider.refreshView();
   }
 }

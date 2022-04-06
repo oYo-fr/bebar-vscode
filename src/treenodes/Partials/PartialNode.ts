@@ -21,6 +21,17 @@ export class PartialNode extends BaseNode {
     this.description = origin;
   }
 
+  command = {
+    command: "vscode.open",
+    title: "Open File",
+    arguments: [
+      vscode.Uri.parse("file:" + path.resolve(this.bebarHandler.rootPath, this.partial.origin)),
+      {
+        viewColumn: 1,
+      },
+    ],
+  };
+
   getChildren(): BaseNode[] {
     return [];
   }

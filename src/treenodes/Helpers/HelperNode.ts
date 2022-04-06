@@ -21,6 +21,17 @@ export class HelperNode extends BaseNode {
     this.description = origin;
   }
 
+  command = {
+    command: "vscode.open",
+    title: "Open File",
+    arguments: [
+      vscode.Uri.parse("file:" + path.resolve(this.bebarHandler.rootPath, this.helper.origin)),
+      {
+        viewColumn: 1,
+      },
+    ],
+  };
+
   getChildren(): BaseNode[] {
     return [];
   }

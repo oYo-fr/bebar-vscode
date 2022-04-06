@@ -12,7 +12,7 @@ export class OutputsNode extends BaseNode {
     public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
       .TreeItemCollapsibleState.Expanded
   ) {
-    super(context, templateHandler.template.file!, collapsibleState);
+    super(context, "Outputs", collapsibleState);
   }
 
   getChildren(): OutputNode[] {

@@ -8,5 +8,6 @@ data:
     file: ./data/greetings.json
 templates:
   -
+    name: greetings
     file: ./templates/greetings.hbs
     output: ./outputs/result.txt

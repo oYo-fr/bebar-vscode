@@ -7,12 +7,48 @@ import * as path from "path";
 import { loadavg } from "os";
 import { BebarEditor } from "./BebarEditor";
 import { OutputProvider } from "./OutputProvider";
+import { Diagnostic, DiagnosticBag, DiagnosticSeverity } from "bebar";
 
 export function activate(context: vscode.ExtensionContext) {
   const bebarController: BebarController = new BebarController(undefined);
 
   const explorer = new BebarExplorer(context, bebarController);
   const outputProvider = new OutputProvider(context, bebarController);
+  let diagnosticCollection: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection('bebar');
+  context.subscriptions.push(diagnosticCollection);
+
+  const showProblems = function(){
+    diagnosticCollection.clear();
+
+    const sortedDiags: Map<string, vscode.Diagnostic[]> = new Map<string, vscode.Diagnostic[]>();
+
+    for(let i = 0; i < DiagnosticBag.Diagnostics.length; i++) {
+      const diagnostic = DiagnosticBag.Diagnostics[i];
+
+      let severity = vscode.DiagnosticSeverity.Error;
+      switch(diagnostic.severity){
+        case DiagnosticSeverity.Hint:
+          severity = vscode.DiagnosticSeverity.Hint;
+          case DiagnosticSeverity.Warning:
+            severity = vscode.DiagnosticSeverity.Warning;
+            case DiagnosticSeverity.info:
+              severity = vscode.DiagnosticSeverity.Information;
+      }
+
+      const diag: vscode.Diagnostic = new vscode.Diagnostic(
+        new vscode.Range(diagnostic.startLine, diagnostic.startColumn, diagnostic.endLine, diagnostic.endColumn),
+        diagnostic.message, severity);
+      if(!sortedDiags.has(diagnostic.file)) {
+        sortedDiags.set(diagnostic.file, [diag]);
+      } else {
+        sortedDiags.get(diagnostic.file)!.push(diag);
+      }
+    }
+
+    for(let [file, diags] of sortedDiags) {
+      diagnosticCollection.set(vscode.Uri.file(file), diags);
+    }
+  };
 
   console.log = function (d) {
     Logger.log(util.format(d));
@@ -29,10 +65,15 @@ export function activate(context: vscode.ExtensionContext) {
         event.document.fileName,
         event.document.getText());
       if (event.contentChanges.length > 0) {
-        if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
-          await outputProvider.refresh(refreshContext);
-          await explorer.refreshView();
+        try {
+          if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
+              await outputProvider.refresh(refreshContext);
+              await explorer.refreshView();
+          }
+        } catch(e) {
+          vscode.window.showErrorMessage((e as any).toString());
         }
+        showProblems();
       }
     })
   );
@@ -49,6 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
           undefined);
         if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
           await outputProvider.refresh(refreshContext);
+          showProblems();
           await explorer.refreshView();
         }
       }
@@ -67,6 +109,7 @@ export function activate(context: vscode.ExtensionContext) {
           undefined);
         if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
           await outputProvider.refresh(refreshContext);
+          showProblems();
           await explorer.refreshView();
         }
       }
@@ -85,6 +128,7 @@ export function activate(context: vscode.ExtensionContext) {
           undefined);
         if (await bebarController.handlers[0].handleRefresh(refreshContext)) {
           await outputProvider.refresh(refreshContext);
+          showProblems();
           await explorer.refreshView();
         }
       }
@@ -104,6 +148,7 @@ export function activate(context: vscode.ExtensionContext) {
         if(file){
           bebarController.handlers = [];
           await bebarController.load(file.fsPath);
+          showProblems();
           await explorer.refreshView();
           vscode.commands.executeCommand(
             "setContext",
@@ -116,7 +161,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
       }
     } catch (e) {
-      //vscode.window.showErrorMessage(e.toString());
+      vscode.window.showErrorMessage((e as any).toString());
     }
   });
 
@@ -124,7 +169,7 @@ export function activate(context: vscode.ExtensionContext) {
     try {
       await bebarController.writeFiles();
     } catch (e) {
-      //vscode.window.showErrorMessage(e);
+      vscode.window.showErrorMessage((e as any).toString());
     }
   });
 }

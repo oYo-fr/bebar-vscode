@@ -111,11 +111,6 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-17.0.23.tgz"
   "version" "17.0.23"
 
-"@types/prettier@^2.4.4":
-  "integrity" "sha512-ReVR2rLTV1kvtlWFyuot+d1pkpG2Fw/XKE3PDAdj57rbM97ttSp9JZ2UsP+2EHTylra9cUf6JA7tGwW1INzUrA=="
-  "resolved" "https://registry.npmjs.org/@types/prettier/-/prettier-2.4.4.tgz"
-  "version" "2.4.4"
-
 "@types/vscode@^1.65.0":
   "integrity" "sha512-ZfJck4M7nrGasfs4A4YbUoxis3Vu24cETw3DERsNYtDZmYSYtk6ljKexKFKhImO/ZmY6ZMsmegu2FPkXoUFImA=="
   "resolved" "https://registry.npmjs.org/@types/vscode/-/vscode-1.66.0.tgz"
@@ -481,10 +476,10 @@
   "resolved" "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
   "version" "1.5.1"
 
-"bebar@^0.44.0":
-  "integrity" "sha512-ZD5gwFUhzIuxKoN76KWSXmibRxVZGnZ9xhg5iHOvfe+i5NVl7mD7tNP8/RxrNxf6goNnfdj/8vmvxxQAcRxTZw=="
-  "resolved" "https://registry.npmjs.org/bebar/-/bebar-0.44.0.tgz"
-  "version" "0.44.0"
+"bebar@^0.55.0":
+  "integrity" "sha512-bxlvhzcABOW/dIzr0MdiLrmkwSLknzGDoqxe3BAsC6nbK/GTUxwWou2JpApMl+aJwYr+tH3ORkl07Rw5TXCmIQ=="
+  "resolved" "https://registry.npmjs.org/bebar/-/bebar-0.55.0.tgz"
+  "version" "0.55.0"
   dependencies:
     "axios" "^0.26.0"
     "chalk" "4.1.2"
@@ -2351,7 +2346,7 @@
   dependencies:
     "fast-diff" "^1.1.2"
 
-"prettier@^2.5.1", "prettier@^2.6.2", "prettier@>=2.0.0":
+"prettier@^2.5.1", "prettier@>=2.0.0":
   "integrity" "sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew=="
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.6.2.tgz"
   "version" "2.6.2"
@@ -2919,9 +2914,9 @@
   "version" "1.0.6"
 
 "uglify-js@^3.1.4":
-  "integrity" "sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg=="
-  "resolved" "https://registry.npmjs.org/uglify-js/-/uglify-js-3.15.3.tgz"
-  "version" "3.15.3"
+  "integrity" "sha512-vMOPGDuvXecPs34V74qDKk4iJ/SN4vL3Ow/23ixafENYvtrNvtbcgUeugTcUGRGsOF/5fU8/NYSL5Hyb3l1OJA=="
+  "resolved" "https://registry.npmjs.org/uglify-js/-/uglify-js-3.15.4.tgz"
+  "version" "3.15.4"
 
 "unbox-primitive@^1.0.1":
   "integrity" "sha512-tZU/3NqK3dA5gpE1KtyiJUrEB0lxnGkMFHptJ7q6ewdZ8s12QrODwNbhIJStmJkd1QDXa1NRA8aF2A1zk/Ypyw=="

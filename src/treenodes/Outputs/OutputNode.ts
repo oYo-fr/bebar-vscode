@@ -22,7 +22,7 @@ export class OutputNode extends BaseNode {
     command: "vscode.open",
     title: "Open File",
     arguments: [
-      vscode.Uri.parse("bebar:" + this.templateHandler.template.file ?? this.templateHandler.template.url! + '/' + this.output.file),
+      vscode.Uri.parse("bebar:" + this.output.file),
       {
         viewColumn: 2,
       },

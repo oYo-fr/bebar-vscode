@@ -1,7 +1,4 @@
-helpers:
-  - ./helpers/*.js
-partials:
-  - ./partials/*.hbs
+
 data:
   -
     name: greetings
@@ -11,3 +8,7 @@ templates:
     name: greetings
     file: ./templates/greetings.hbs
     output: ./outputs/result.txt
+helpers:
+  - ./helpers/*.js
+partials:
+  - ./partials/*.hbs

@@ -149,6 +149,6 @@
 		"yarn-upgrade-all": "^0.6.1"
 	},
 	"dependencies": {
-		"bebar": "^0.55.0"
+		"bebar": "^0.58.0"
 	}
 }

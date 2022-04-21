@@ -23,7 +23,7 @@ export class DataNode extends BaseNode {
       Object.keys(valueObject).map((key: string) => {
         // @ts-ignore
         const v = valueObject[key];
-        result.push(new DataObjectNode(this.context, key, v as Object));
+        result.push(new DataObjectNode(this.context, key, v as Object, this.output));
       });
     }
     return result;

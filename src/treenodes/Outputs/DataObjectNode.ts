@@ -1,11 +1,13 @@
 import { BaseNode } from "./../BaseNode";
 import * as vscode from "vscode";
+import { Output } from "bebar";
 
 export class DataObjectNode extends BaseNode {
   constructor(
     public context: vscode.ExtensionContext,
     public readonly key: string,
-    public readonly value: Object
+    public readonly value: Object,
+    public source: Output | undefined
   ) {
     super(
       context,
@@ -20,6 +22,9 @@ export class DataObjectNode extends BaseNode {
       this.tooltip = `${this.label} (${value.length})`;
     } else {
       this.tooltip = "";
+      if (source) {
+        this.description = source.keyToDataset[key].file ?? source.keyToDataset[key].url;
+      }
       if (typeof value !== "object" && value !== null) {
         this.description = `(${value})`;
         this.tooltip = `${value}`;
@@ -35,7 +40,7 @@ export class DataObjectNode extends BaseNode {
       Object.keys(valueObject).map((key: string) => {
         // @ts-ignore
         const v = valueObject[key];
-        result.push(new DataObjectNode(this.context, key, v as Object));
+        result.push(new DataObjectNode(this.context, key, v as Object, undefined));
       });
     }
     return result;
